@@ -1,6 +1,9 @@
-const userActions =  require("./userActions");
-
+const userActions =  require("./userActions")
+const productActions = require("./productActions")
+const orderActions = require("./orderActions")
 
 module.exports = {
-	...userActions
+	...userActions,
+	...productActions,
+	...orderActions
 };
