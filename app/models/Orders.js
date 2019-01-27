@@ -21,6 +21,6 @@ const OrderSchema = new Schema({
         type: Number,
         required: true
     }
-});
+},{"collection": "orders", "timestamps": true})
 
 module.exports = mongoose.model('orders', OrderSchema)

@@ -9,33 +9,31 @@ const UserSchema = new Schema({
     
     name: {
         type: String,
-        required: true
+        required: [true, "Name is required!"]
     },
     fist_name: {
         type: String,
-        required: true
+        required: [true, "First name is required!"]
     },
     last_name: {
-        type: String,
-        required: true
+        type: String
 	},
-	alias: {
+	avatar_name: {
 		type: String,
-		require: true,
+		require: [true,"User name is required!"],
 		unique: true
 	},
     email: {
 		type: String,
 		required: true,
-		unique: true
+		unique: [true,"Email is required!"]
 	},
 	password: {
 		type: String,
-		required: true
+		required: [true,"Password is required!"]
 	},
 	image_location: {
 		type: String,
-		required: true,
 		unique: true
 	},
 	birth_date: {
