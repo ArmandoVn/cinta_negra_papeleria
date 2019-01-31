@@ -1,7 +1,25 @@
+# Le decimos a graph que recibimos algo de tipo Upload
+scalar Upload
 
 type Query {
     prueba: String!
-    Users: [User]
+    Users: [User!]
+    User(avatar_name: String!): User
+    Product: Product
+    Products: [Product!]
+    Order: Order
+    Orders: [Order!]
+    UserOrders(avatar_name: String!): [Order]
+}
+
+type Mutation {
+    SingUp(name: String!, first_name: String!, last_name: String, avatar_name: String!, email: String!, 
+    password: String!, gender: Gender!, is_active: Boolean!): User!
+    SingIn: User
+    UpdateUser: User
+    DeleteUser(avatar_name: String!): User!
+    UploadProduct(product: String!, description: String!, pices: Int!, price: Float!, desc: Float!): Product
+    CreateOrder(avatar_name: String!): Order!
 }
 
 type User {
@@ -10,10 +28,10 @@ type User {
     first_name: String!
     last_name: String
     user_name: String!
+    avatar_name: String!
     email: String!
-    image_location: String
-    birth_date: String
-    gender: String!
+    profile_image: String
+    gender: Gender!
     is_active: Boolean!
 }
 
@@ -31,4 +49,13 @@ type Order {
     date_creation: String!
     products: [Product]
     total: Float!
+}
+
+enum Gender {
+    MALE
+    FEMALE
+}
+
+input UserCreateInput {
+    profile_image: Upload # Atributo para subir la imagen
 }

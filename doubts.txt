@@ -1,0 +1,5 @@
+Porque las mutations me regresan un valor nulo?
+
+Que hacer para traer el id de un Usuario?
+
+Ayuda con el proceso de subir imagines

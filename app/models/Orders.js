@@ -3,9 +3,13 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const OrderSchema = new Schema({
+    user_id: {
+        type: Schema.Types.ObjectId,
+        require:[true, "The order must have an owner"]
+    },
     date_creation: {
         type: Date,
-        required: true
+        default: Date.now()
     },
     products: [
         {
@@ -19,8 +23,15 @@ const OrderSchema = new Schema({
     },
     total: {
         type: Number,
-        required: true
+        default: 0
+
     }
 },{"collection": "orders", "timestamps": true})
 
 module.exports = mongoose.model('orders', OrderSchema)
+
+/*
+{
+    date_creation:
+}
+*/

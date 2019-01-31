@@ -43,3 +43,13 @@ const ProductSchema = new Schema({
 },{"collection": "products", "timestamps": true});
 
 module.exports = mongoose.model('products', ProductSchema);
+
+/* 
+{
+    product: "Popo",
+    description: "Popo",
+    pices: 2,
+    price:17.5,
+    desc: 0
+}
+*/

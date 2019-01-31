@@ -3,7 +3,7 @@ const NODE_ENV = process.env.NODE_ENV || "dev";
 const ENVS = {
 
 	dev: {
-		SECRET_KEY: "799651B27B2E5D99D17C9CF6754B5",
+		SECRET_KEY: "pilin",
 		db: {
 			url: "mongodb://localhost/stationary"
 		},
@@ -11,7 +11,11 @@ const ENVS = {
 	},
 
 	test: {
-
+		SECRET_KEY: "pilin2",
+		db: {
+			url: "mongodb://localhost/stationary2"
+		},
+		port: 4000
 	},
 
 	production: {

@@ -1,0 +1,45 @@
+// User queries
+
+query ni{
+	user: User(avatar_name: "ArmandoVN"){
+    name
+    first_name
+    last_name
+    avatar_name
+    email
+    gender
+    is_active
+    profile_image
+  }
+  users: Users{
+    name
+    first_name
+    last_name
+    avatar_name
+    email
+    gender
+    is_active
+    profile_image
+  }
+}
+
+mutation no {
+  Ex1: SingUp(
+    name:"Armando",
+    first_name:"Valderrama",
+    last_name:"Navarro",
+    avatar_name:"ArmandoVn",
+    email:"hoa",
+    password:"123",
+    gender:MALE,
+    is_active:true
+  ){
+    name
+  }
+  
+  Ex2: DeleteUser(avatar_name: "ArmandoVN"){
+    is_active
+  }
+}
+
+// Order queries

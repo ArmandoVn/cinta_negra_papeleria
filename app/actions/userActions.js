@@ -4,29 +4,21 @@ const createUser = (data) => {
     return User.create(data)
 }
 
-const getUserByUserName = (user_name) => {
+const getUserByAvatarName = (avatar_name) => {
     return User.findOne({
-        user_name: user_name
-    })
-}
-
-const getUserById = (id) => {
-    return User.findOne({
-        _id: id,
+        avatar_name: avatar_name,
         is_active: true
     })
 }
 
 //arrow : Prototipe
 const getAllUsers = () => {
-    return User.find({
-        is_active: true
-    })
+    return User.find()
 }
 
-const deleteUserById = (id) => {
+const deleteUserByAvatarName = (avatar_name) => {
     return User.findOneAndUpdate({
-        _id: id,
+        avatar_name: avatar_name,
         is_active: true
     },
     {
@@ -42,7 +34,6 @@ const deleteUserById = (id) => {
 module.exports = {
     createUser,
     getAllUsers,
-    getUserByUserName,
-    getUserById,
-    deleteUserById
+    getUserByAvatarName,
+    deleteUserByAvatarName
 }

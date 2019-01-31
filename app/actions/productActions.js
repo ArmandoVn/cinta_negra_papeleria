@@ -4,29 +4,26 @@ const createProduct = (data) => {
     return Product.create(data)
 }
 
-const getProductById = (id) => {
-    return Product.findOne({
-        _id: id,
-        is_active: true
-    })
-}
-
-const getProductByProduct = (product) => {
+const getProductByProductName = (product) => {
     return Product.findOne({
         product: product,
         is_active: true
     })
 }
 
-const getAllProducts = () => {
+const getActiveProducts = () => {
     return Product.find({
         is_active: true
     })
 }
 
-const deleteProductById = (id) => {
+const getAllProducts = () => {
+    return Product.find()
+}
+
+const deleteProductByProductName = (product) => {
     return Product.findOneAndUpdate({
-        _id: id,
+        product: product,
         is_active: true
     },
     {
@@ -42,7 +39,8 @@ const deleteProductById = (id) => {
 module.exports = {
     createProduct,
     getAllProducts,
-    getProductById,
-    getProductByProduct,
-    deleteProductById
+    getProductByProductName,
+    getProductByProductName,
+    deleteProductByProductName,
+    getActiveProducts
 }

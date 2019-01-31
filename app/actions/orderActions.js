@@ -4,17 +4,19 @@ const createOrder = (data) => {
     return Order.create(data)
 }
 
-const getOrderById = (id) => {
-    return Order.findOne({
-        _id: id,
+const getOrdersByAvatarName = (avatar_name) => {
+    return Order.find({
+        avatar_name: avatar_name,
         is_active: true
     })
 }
 
 const getAllOrders = () => {
-    return Order.find({
-        is_active: true
-    })
+    return Order.find()
+}
+
+const addProduct = (product) => {
+    
 }
 
 const deleteOrder = (id) => {
@@ -34,7 +36,7 @@ const deleteOrder = (id) => {
 
 module.exports = {
     createOrder,
-    getOrderById,
+    getOrdersByAvatarName,
     getAllOrders,
     deleteOrder
 }

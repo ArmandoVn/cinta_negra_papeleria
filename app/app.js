@@ -14,9 +14,7 @@ const mongo = mongoose.connection;
 mongo.on("error", (error) => console.log("Failed to connect to mongo", error))
 	.once("open", () => console.log("Connected to database"));
 
-
-
-
+	
 const schema = makeExecutableSchema({
 	typeDefs,
 	resolvers,

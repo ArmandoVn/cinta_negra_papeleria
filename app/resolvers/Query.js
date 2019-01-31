@@ -2,7 +2,8 @@ const actions = require('../actions');
 
 const prueba = (_, args, context, info) => {
     return 'Wolcome to Karmin\'s Stationary'
-}   
+}
+
 // _: info del servidor de graph
 // args: recibe datos
 // context: recibe metadatos
@@ -14,7 +15,7 @@ const Users = (_, args, context, info) => {
 }
 
 const User = (_, args, context, info) => {
-    return actions.getUserById(args.id)
+    return actions.getUserByAvatarName(args.avatar_name)
                     .then((user) => {
                         if(!user) throw new Error("User does not exist")
                         return user
@@ -43,13 +44,25 @@ const Orders = (_, args, context, info) => {
 
 const Order = (_, args, context, info) => {
     return actions.getOrderById(args.id)
-                    .then((order) => {
-                        if(!order) throw new Error("Order does not exist")
-                        return order
-                    }).catch(e => e)
+        .then(order => {
+            if(!order) throw new Error("Order does not exist")
+            return order
+        }).catch(e => e)
+}
+
+const UserOrders = (_, args, context, info) => {
+    return actions.getOrdersByAvatarName(args.avatar_name)
+        .then(order => { order => order })
+        .catch(e => e)
 }
 
 module.exports = {
     prueba,
-    Users
+    Users,
+    User,
+    Product,
+    Products,
+    Order,
+    Orders,
+    UserOrders
 };
