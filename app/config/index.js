@@ -5,7 +5,7 @@ const ENVS = {
 	dev: {
 		SECRET_KEY: "pilin",
 		db: {
-			url: "mongodb://Armando:1Vnarmando@ds219055.mlab.com:19055/stationary"
+			url: "mongodb://localhost/stationary"
 		},
 		port: 3000
 	},
@@ -26,3 +26,5 @@ const ENVS = {
 module.exports = ENVS[NODE_ENV];
 
 // To connect with a local database just need replace url with the localhost addres
+// url: "mongodb://Armando:1Vnarmando@ds219055.mlab.com:19055/stationary"
+// url: "mongodb://localhost/stationary"

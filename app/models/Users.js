@@ -68,11 +68,11 @@ UserSchema.pre("save", (next) => {
 */
 
 // Here we tell mongodb that all ObjectId types will be transformed into String
-mongoose.Types.ObjectId.prototype.valueOf = function () {
-	return this.toString();
-};
+// mongoose.Types.ObjectId.prototype.valueOf = function () {
+// 	return this.toString();
+// }
 
-module.exports = mongoose.model("users", UserSchema);
+module.exports = mongoose.model("users", UserSchema)
 
 /*
 {

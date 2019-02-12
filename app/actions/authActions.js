@@ -31,7 +31,7 @@ const createToken = ({ email, first_name , _id}) => {
 const signup = (data) => {
 	return new Promise((resolve, reject) => {
 		createUser(data).then(
-			(user) => {
+			user => {
 				const token = createToken(user);
 				resolve(token);
 			}
@@ -40,6 +40,19 @@ const signup = (data) => {
 
 	});
 };
+
+const login = ({ email, password }) => {
+	return new Promise((resolve, reject) => {
+		getUserByEmail(email)
+			.then(user => {
+				console.log(password + user)
+				bcrypt.compare(password, user.password, (err, isValid) => {
+					if(err) reject(err)
+					isValid ? resolve(createToken(user)) : reject(new Error("Password does not match!"))
+				})
+			}).catch(reject)
+	})
+}
 
 module.exports = {
 	signup,

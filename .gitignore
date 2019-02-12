@@ -431,3 +431,6 @@ healthchecksdb
 .elasticbeanstalk/*
 !.elasticbeanstalk/*.cfg.yml
 !.elasticbeanstalk/*.global.yml
+
+# Other files
+playground_examples.txt

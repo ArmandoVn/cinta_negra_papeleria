@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const OrderSchema = new Schema({
-    user_id: {
+    order_owner: {
         type: Schema.Types.ObjectId,
         require:[true, "The order must have an owner"]
     },
@@ -24,7 +24,6 @@ const OrderSchema = new Schema({
     total: {
         type: Number,
         default: 0
-
     }
 },{"collection": "orders", "timestamps": true})
 

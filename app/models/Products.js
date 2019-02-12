@@ -6,7 +6,8 @@ const ProductSchema = new Schema({
     
     product: {
         type: String,
-        required: [true,"Product name is required!"]
+        required: [true,"Product name is required!"],
+        unique: true
     },
     description: {
         type: String,
@@ -28,8 +29,7 @@ const ProductSchema = new Schema({
         percent: 0
     },
     image_name: {
-        type: String,
-        required: [true,"Image product is required!"]
+        type: String
     },
     is_active: {
         type: Boolean,
@@ -42,7 +42,12 @@ const ProductSchema = new Schema({
     
 },{"collection": "products", "timestamps": true});
 
-module.exports = mongoose.model('products', ProductSchema);
+// Here we tell mongodb that all ObjectId types will be transformed into String
+// mongoose.Types.ObjectId.prototype.valueOf = function () {
+// 	return this.toString();
+// }
+
+module.exports = mongoose.model('products', ProductSchema)
 
 /* 
 {

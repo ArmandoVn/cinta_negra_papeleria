@@ -1,4 +1,5 @@
-const { GraphQLServer } = require("graphql-yoga");
+// PubSub: It permits to create a new connection with a socket
+const { GraphQLServer, PubSub } = require("graphql-yoga");
 const resolvers = require("./resolvers");
 const { importSchema } = require("graphql-import");
 const { makeExecutableSchema } = require("graphql-tools");
@@ -7,6 +8,7 @@ const mongoose = require("mongoose");
 
 const { db } = require("./config");
 
+const pubsub = new PubSub();
 
 mongoose.connect(db.url, { useNewUrlParser: true });
 const mongo = mongoose.connection;
@@ -14,7 +16,7 @@ const mongo = mongoose.connection;
 mongo.on("error", (error) => console.log("Failed to connect to mongo", error))
 	.once("open", () => console.log("Connected to database"));
 
-	
+
 const schema = makeExecutableSchema({
 	typeDefs,
 	resolvers,
@@ -22,7 +24,9 @@ const schema = makeExecutableSchema({
 
 const server = new GraphQLServer({
 	schema,
-	context: req => ({...req})
+	// adding pugsub to context
+	context: 
+		req => ({...req, pubsub})
 });
 
 const options = {

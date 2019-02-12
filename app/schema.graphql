@@ -5,25 +5,39 @@ type Query {
     prueba: String!
     Users: [User!]
     User(avatar_name: String!): User
-    Product: Product
+    Product(product: String!): Product
     Products: [Product!]
-    Order: Order
+    Order(id: ID!): Order!
     Orders: [Order!]
     UserOrders(avatar_name: String!): [Order]
 }
 
 type Mutation {
-    SingUp(name: String!, first_name: String!, last_name: String, avatar_name: String!, email: String!, 
-    password: String!, gender: Gender!, is_active: Boolean!): User!
-    SingIn: User
+    SingUp(data: UserCreateInput!): Auth!
+    SingIn(email: String!, password: String!): Auth!
     UpdateUser: User
     DeleteUser(avatar_name: String!): User!
-    UploadProduct(product: String!, description: String!, pices: Int!, price: Float!, desc: Float!): Product
-    CreateOrder(avatar_name: String!): Order!
+    UploadProduct(data: ProductCreateInput!): Product!
+    CreateOrder(data: OrderCreateInput!): Order!
+    AddProductToOrder(id: String!, product_name: String!): Order
+}
+
+type Suscription {
+    newComment: Comment!
+}
+
+type Comment {
+    id: Int!
+    text: String!
+}
+
+type Auth {
+    token: String
+    message: String
 }
 
 type User {
-    _id: ID
+    id: ID!
     name: String!
     first_name: String!
     last_name: String
@@ -36,6 +50,7 @@ type User {
 }
 
 type Product {
+    id: ID!
     product: String!
     description: String!
     pices: Int!
@@ -46,8 +61,10 @@ type Product {
 }
 
 type Order {
+    id: ID!
+    order_owner: User!
     date_creation: String!
-    products: [Product]
+    products: [Product!]
     total: Float!
 }
 
@@ -57,5 +74,27 @@ enum Gender {
 }
 
 input UserCreateInput {
-    profile_image: Upload # Atributo para subir la imagen
+    name: String!
+    first_name: String!
+    last_name: String
+    avatar_name: String!
+    email: String!
+    password: String!
+    gender: Gender!
+    is_active: Boolean!
+}
+
+input ProductCreateInput {
+    product: String!
+    description: String!
+    pices: Int!
+    price: Float!
+    desc: Float!
+    is_active: Boolean!
+}
+
+input OrderCreateInput {
+    order_owner: String!
+    is_active: Boolean!
+    total: Float!
 }

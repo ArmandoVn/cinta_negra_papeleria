@@ -16,7 +16,7 @@ const Users = (_, args, context, info) => {
 
 const User = (_, args, context, info) => {
     return actions.getUserByAvatarName(args.avatar_name)
-                    .then((user) => {
+                    .then(user => {
                         if(!user) throw new Error("User does not exist")
                         return user
                     }).catch(e => e)
@@ -29,8 +29,8 @@ const Products = (_, args, context, info) => {
 }
 
 const Product = (_, args, context, info) => {
-    return actions.getProductById(args.id)
-                    .then((product) => {
+    return actions.getProductByProductName(args.product)
+                    .then(product => {
                         if(!product) throw new Error("Product does not exist")
                         return product
                     }).catch(e => e)

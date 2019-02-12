@@ -24,7 +24,7 @@ query ni{
 }
 
 mutation no {
-  Ex1: SingUp(
+  SingUp(data:{
     name:"Armando",
     first_name:"Valderrama",
     last_name:"Navarro",
@@ -33,8 +33,9 @@ mutation no {
     password:"123",
     gender:MALE,
     is_active:true
+  }
   ){
-    name
+    token
   }
   
   Ex2: DeleteUser(avatar_name: "ArmandoVN"){
@@ -43,3 +44,26 @@ mutation no {
 }
 
 // Order queries
+CreateOrder(data: {order_owner:"ArmandoV", is_active:true, total:0.0}){
+    id
+    products{
+      product
+    }
+    date_creation
+  }
+
+// Product Mutations
+UploadProduct(data:{
+    product:"Cartulina"
+    description:"This is a cartulina"
+    pices: 2
+    desc: 0.25
+    is_active: true
+    price: 3
+  }){
+    product
+}
+
+AddProductToOrder(product_name:"Cartulina", id:"5c5e48eb7ede093df59a4379"){
+    id
+  }

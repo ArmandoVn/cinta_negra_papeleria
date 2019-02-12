@@ -1,5 +1,6 @@
 const Product = require('../models/Products')
 
+// valid method
 const createProduct = (data) => {
     return Product.create(data)
 }
@@ -11,7 +12,7 @@ const getProductByProductName = (product) => {
     })
 }
 
-const getActiveProducts = () => {
+const getAllActiveProducts = () => {
     return Product.find({
         is_active: true
     })
@@ -21,7 +22,7 @@ const getAllProducts = () => {
     return Product.find()
 }
 
-const deleteProductByProductName = (product) => {
+const deleteProductByProductName = product => {
     return Product.findOneAndUpdate({
         product: product,
         is_active: true
@@ -42,5 +43,5 @@ module.exports = {
     getProductByProductName,
     getProductByProductName,
     deleteProductByProductName,
-    getActiveProducts
+    getAllActiveProducts
 }

@@ -15,9 +15,21 @@ const getAllOrders = () => {
     return Order.find()
 }
 
-const addProduct = (product) => {
-    
+const addProductToOrder = (id, product) => {
+    return Order.findByIdAndUpdate(id, {
+        $push: {
+            products: product
+        }
+    }, {
+        new: true
+    })
 }
+
+/*
+const deleteProduct = (id, product_id) => {
+    return Order.findOneAndRemove
+}
+*/
 
 const deleteOrder = (id) => {
     return Order.findOneAndUpdate({
@@ -38,5 +50,6 @@ module.exports = {
     createOrder,
     getOrdersByAvatarName,
     getAllOrders,
-    deleteOrder
+    deleteOrder,
+    addProductToOrder
 }
